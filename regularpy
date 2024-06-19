@@ -1,0 +1,12 @@
+from collections import Counter
+
+error_counter= Counter()
+with open ("FileHandling/smallfile.txt") as file:
+    logs_lines=file.readlines()
+    #print(logs_lines)
+    for log in logs_lines:
+        if '- ERROR -' in log:
+            error_type=log.split('- ERROR -')[1].strip()
+            error_counter[error_type]+=1
+print(f'Type - {(error_counter.most_common(1))[0][0]} and count is {(error_counter.most_common(1))[0][1]}')
+
